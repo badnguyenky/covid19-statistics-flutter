@@ -1,0 +1,314 @@
+@startuml test
+set namespaceSeparator ::
+
+class "covid_19_tracker_app_flutter::main.dart::MyApp" {
+  +_MyAppState* createState()
+}
+
+class "covid_19_tracker_app_flutter::main.dart::_MyAppState" {
+  -int* _selectedIndex
+  {static} +List<Widget*>* widgetOptions
+  -void _onItemSelected()
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::models::channel_model.dart::Channel" {
+  +String* id
+  +String* title
+  +String* profilePictureUrl
+  +String* subscriberCount
+  +String* videoCount
+  +String* uploadPlaylistId
+  +String* description
+  +List<Video*>* videos
+}
+
+class "covid_19_tracker_app_flutter::models::chart.dart::Chart" {
+  +List<Series<TimeSeriesCases*, DateTime*>*>* seriesList
+  +bool* animate
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::models::country.dart::CountryModel" {
+  +String* country
+  +String* slug
+  +String* iso2
+}
+
+class "covid_19_tracker_app_flutter::models::country_chart_model.dart::CountryChartModel" {
+  +String* country
+  +int* confirmed
+  +int* death
+  +int* recovered
+  +int* active
+  +DateTime* date
+}
+
+class "covid_19_tracker_app_flutter::models::country_summary.dart::CountrySummaryModel" {
+  +bool* isExpanded
+  +String* country
+  +CountryInfo* countryInfo
+  +int* cases
+  +int* todayCases
+  +int* deaths
+  +int* todayDeaths
+  +int* recovered
+  +int* todayRecovered
+  +int* active
+}
+
+class "covid_19_tracker_app_flutter::models::country_summary.dart::CountryInfo" {      
+  +int* iId
+  +String* iso2
+  +String* flag
+  +Map<String*, dynamic>* toJson()
+}
+
+class "covid_19_tracker_app_flutter::models::expansionpanel_model.dart::ExpansionPanelModel" {
+  +bool* isExpanded
+  +String* header
+  +String* body
+}
+
+class "covid_19_tracker_app_flutter::models::global_summary.dart::GlobalSummaryModel" {  
+  +int* cases
+  +int* todayCases
+  +int* deaths
+  +int* todayDeaths
+  +int* recovered
+  +int* todayRecovered
+  +int* active
+}
+
+class "covid_19_tracker_app_flutter::models::symptoms.dart::Symptoms" {
+  +String* imageurl
+  +String* title
+}
+
+class "covid_19_tracker_app_flutter::models::time_series_cases.dart::TimeSeriesCases" {  
+  +int* cases
+  +DateTime* time
+}
+
+class "covid_19_tracker_app_flutter::models::video_model.dart::Video" {
+  +String* id
+  +String* title
+  +String* thumbnailUrl
+  +String* channelTitle
+  +DateTime* publishedAt
+  +String* description
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::chart_loading.dart::ChartLoading" {
+  +Widget* build()
+  +Widget* loadingChartCard()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::country_loading.dart::CountryLoading" {
+  +bool* inputTextLoading
+  +Widget* build()
+  +Widget* loadingInput()
+  +Widget* loadingCard()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::country_statistics.dart::CountryStatistics" {
+  +CountrySummaryModel* summaryList
+  {static} +DateTime* now
+  {static} +String* formattedDate
+  +_CountryStatisticsState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::country_statistics.dart::_CountryStatisticsState" {
+  +NumberFormat* numberFormat
+  +void initState()
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::country_statistics.dart::Counter" {
+  +String* number
+  +Color* color
+  +String* title
+  +String* today
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::countries_detail_page.dart::CountriesDetail" {
+  +_CountriesDetailState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::countries_detail_page.dart::_CountriesDetailState" {
+  +Future<List<CountrySummaryModel*>*>* futureCountryList
+  +void initState()
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::countries_detail_page.dart::CountriesStatistics" {
+  +List<CountrySummaryModel*>* countryListModel
+  +_CountriesStatisticsState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::countries_detail_page.dart::_CountriesStatisticsState" {
+  +NumberFormat* numberFormat
+  +void initState()
+  +Widget* build()
+  +Padding* buildBody()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::countries_detail_page.dart::Counter" {
+  +String* number
+  +Color* color
+  +String* title
+  +String* today
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::countries_detail_page.dart::Country" {
+  +String* country
+  +String* slug
+  +String* iso2
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::detail_page.dart::DetailPage" {
+  +_DetailPageState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::detail_page.dart::_DetailPageState" {
+  -int* _currentIndex
+  +List<Widget*>* pages
+  +void initState()
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::world_detail_page.dart::WorldDetail" {
+  +_WorldDetailState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::world_detail_page.dart::_WorldDetailState" {
+  +Future<GlobalSummaryModel*>* globalSummary
+  +void initState()
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::world_detail_page.dart::WorldStatistics" {
+  +GlobalSummaryModel* globalSummaryModel
+  +NumberFormat* numberFormat
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::detail_page::world_detail_page.dart::Counter" {
+  +String* number
+  +Color* color
+  +String* title
+  +String* today
+  +Widget* build()
+}
+"covid_19_tracker_app_flutter::pages::home_page::detail_page" --[hidden]> "covid_19_tracker_app_flutter::models::country_summary.dart"
+class "covid_19_tracker_app_flutter::pages::home_page::home_page.dart::HomeScreen" {   
+  +_HomeScreenState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::home_page::home_page.dart::_HomeScreenState" {
+  -TextEditingController* _typeAheadController
+  +Future<List<CountrySummaryModel*>*>* countryList
+  +Future<CountrySummaryModel*>* summaryList
+  +Future<List<CountryChartModel*>*>* chartList
+  +void initState()
+  -List<String*>* _getSuggestions()
+  +Widget* build()
+  -List<Series<TimeSeriesCases*, DateTime*>*>* _createData()
+  +Widget* buildCardChart()
+  +Widget* loadingCardChartNoData()
+}
+
+class "covid_19_tracker_app_flutter::pages::infor_page.dart::InfoScreen" {
+  +_InfoScreenState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::infor_page.dart::_InfoScreenState" {       
+  +List<ExpansionPanelModel*>* infoList
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::news_page.dart::NewsScreen" {
+  +_NewsScreenState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::news_page.dart::_NewsScreenState" {        
+  -InAppWebViewController* _appWebViewController
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::prevent_page.dart::PreventScreen" {        
+  +_PreventScreenState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::prevent_page.dart::_PreventScreenState" {  
+  +List<Symptoms*>* symptoms
+  +List<Symptoms*>* preventions
+  +List<ExpansionPanelModel*>* askanswers
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::video_page::videos_page.dart::VideoScreen" 
+{
+  +_VideoScreenState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::video_page::videos_page.dart::_VideoScreenState" {
+  -Channel* _channel
+  -bool* _isLoading
+  +void initState()
+  -dynamic _initChannel()
+  -Future<dynamic>* _refreshChannel()
+  -dynamic _buildProfileInfo()
+  -dynamic _buildVideo()
+  -dynamic _loadMoreVideos()
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::pages::video_page::video_detail_screen.dart::VideoDetailScreen" {
+  +Video* video
+  +_VideoDetailScreenState* createState()
+}
+
+class "covid_19_tracker_app_flutter::pages::video_page::video_detail_screen.dart::_VideoDetailScreenState" {
+  -YoutubePlayerController* _controller
+  +void initState()
+  +Widget* build()
+}
+
+class "covid_19_tracker_app_flutter::services::covid_service.dart::CovidService" {     
+  +Future<GlobalSummaryModel*>* getGlobalSummary()
+  +Future<CountrySummaryModel*>* getCountrySummary()
+  +Future<List<CountryChartModel*>*>* getChartSummary()
+  +Future<List<CountrySummaryModel*>*>* getCountrySummaryList()
+}
+
+class "covid_19_tracker_app_flutter::services::youtube_service.dart::YoutubeService" { 
+  {static} +YoutubeService* instance
+  -String* _baseUrl
+  -String* _nextPageToken
+  +Future<Channel*>* fetchChannel()
+  +Future<List<Video*>*>* fetchVideosFromPlaylist()
+}
+
+"covid_19_tracker_app_flutter::models::channel_model.dart::Channel" --[hidden]> "covid_19_tracker_app_flutter::models::chart.dart::Chart"
+"covid_19_tracker_app_flutter::models::country.dart::CountryModel" --[hidden]> "covid_19_tracker_app_flutter::models::country_chart_model.dart::CountryChartModel"
+
+"covid_19_tracker_app_flutter::models::country_summary.dart::CountrySummaryModel" o-- "covid_19_tracker_app_flutter::models::country_summary.dart::CountryInfo"
+"covid_19_tracker_app_flutter::pages::home_page::country_statistics.dart::CountryStatistics" o-- "covid_19_tracker_app_flutter::models::country_summary.dart::CountrySummaryModel"
+"covid_19_tracker_app_flutter::pages::home_page::country_statistics.dart::_CountryStatisticsState" o-- "intl::src::intl::number_format.dart::NumberFormat"
+"covid_19_tracker_app_flutter::pages::home_page::country_statistics.dart::Counter" o-- "dart::ui::Color"
+"covid_19_tracker_app_flutter::pages::home_page::detail_page::countries_detail_page.dart::_CountriesStatisticsState" o-- "intl::src::intl::number_format.dart::NumberFormat"  
+"covid_19_tracker_app_flutter::pages::home_page::detail_page::countries_detail_page.dart::Counter" o-- "dart::ui::Color"
+"covid_19_tracker_app_flutter::pages::home_page::detail_page::world_detail_page.dart::WorldStatistics" o-- "covid_19_tracker_app_flutter::models::global_summary.dart::GlobalSummaryModel"
+"covid_19_tracker_app_flutter::pages::home_page::detail_page::world_detail_page.dart::WorldStatistics" o-- "intl::src::intl::number_format.dart::NumberFormat"
+"covid_19_tracker_app_flutter::pages::home_page::detail_page::world_detail_page.dart::Counter" o-- "dart::ui::Color"
+"covid_19_tracker_app_flutter::pages::home_page::home_page.dart::_HomeScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"covid_19_tracker_app_flutter::pages::news_page.dart::_NewsScreenState" o-- "flutter_inappwebview::src::in_app_webview::in_app_webview_controller.dart::InAppWebViewController"
+"covid_19_tracker_app_flutter::pages::video_page::videos_page.dart::_VideoScreenState" o-- "covid_19_tracker_app_flutter::models::channel_model.dart::Channel"
+"covid_19_tracker_app_flutter::pages::video_page::video_detail_screen.dart::VideoDetailScreen" o-- "covid_19_tracker_app_flutter::models::video_model.dart::Video"
+"covid_19_tracker_app_flutter::pages::video_page::video_detail_screen.dart::_VideoDetailScreenState" o-- "youtube_player_flutter::src::utils::youtube_player_controller.dart::YoutubePlayerController"
+"covid_19_tracker_app_flutter::services::youtube_service.dart::YoutubeService" o-- "covid_19_tracker_app_flutter::services::youtube_service.dart::YoutubeService"
+
+@enduml
