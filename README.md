@@ -1,6 +1,6 @@
 # covid_19_tracker_app_flutter
 
-A new Flutter project.
+A Flutter project that show Viet Nam and the World COVID-19 data.
 
 ## Getting Started
 
